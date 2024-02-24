@@ -17,18 +17,18 @@ function Humidity() {
 
     const getHumidityText = (humidity: number) => {
         if(humidity < 30){
-            return "Dry: May cause skin irritation.";
+            return "Dry: May cause skin irritation";
         }
         if(humidity >= 30 && humidity < 50){
-            return "Comfortable: Ideal for most people.";
+            return "Comfortable: Ideal for most people";
         }
         if(humidity >= 50 && humidity < 70){
-            return "Moderate: Sticky, may increase allergens.";
+            return "Moderate: Sticky, may increase allergens";
         }
         if(humidity >= 70){
-            return "High: Uncomfortable, mold growth risk.";
+            return "High: Uncomfortable, mold growth risk";
         }
-        return "Unavailable: Humidity data not available.";
+        return "Unavailable: Humidity data not available";
     }
   return (
     <div className="pt-6 pb-5 px-4 h-[12rem] border rounded-lg flex flex-col gap-5 dark:bg-dark-grey shadow-sm dark:shadow-none">
@@ -38,7 +38,7 @@ function Humidity() {
         </h2>
         <p className="text-2xl pt-4">{humidity}%</p>
       </div>
-      <p className="text-sm">{getHumidityText(humidity)}</p>
+      <p className="text-sm">{getHumidityText(humidity)}.</p>
     </div>
   );
 }
