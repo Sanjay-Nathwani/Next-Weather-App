@@ -25,7 +25,7 @@ function DailyForecast() {
   const { weather } = forecast;
 
   if (!fiveDayForecast || !city || !list) {
-    return <Skeleton className="h-[12rem] w-full" />;
+    return <Skeleton className="h-[12rem] w-full col-span-2" />;
   }
 
   if (!forecast || !weather) {
