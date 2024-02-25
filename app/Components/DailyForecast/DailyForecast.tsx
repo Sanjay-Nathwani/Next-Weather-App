@@ -1,31 +1,24 @@
 "use client";
-
+import React from "react";
 import { useGlobalContext } from "@/app/context/globalContext";
-import {
-  clearSky,
-  cloudy,
-  drizzleIcon,
-  rain,
-  snow,
-  thunderIcon,
-} from "@/app/utils/Icons";
-import { kelvinToCelsius } from "@/app/utils/misc";
+import { clearSky, cloudy, drizzleIcon, rain, snow } from "@/app/utils/Icons";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Skeleton } from "@/components/ui/skeleton";
 import moment from "moment";
+import { kelvinToCelsius } from "@/app/utils/misc";
 
 function DailyForecast() {
-  const { fiveDayForecast, forecast } = useGlobalContext();
+  const { forecast, fiveDayForecast } = useGlobalContext();
 
-  const { city, list } = fiveDayForecast;
   const { weather } = forecast;
+  const { city, list } = fiveDayForecast;
 
   if (!fiveDayForecast || !city || !list) {
-    return <Skeleton className="h-[12rem] w-full col-span-2" />;
+    return <Skeleton className="h-[12rem] w-full" />;
   }
 
   if (!forecast || !weather) {
@@ -35,7 +28,7 @@ function DailyForecast() {
   const today = new Date();
   const todayString = today.toISOString().split("T")[0];
 
-  // filter the list for today's broadcast
+  //filter the list for today's forecast
   const todaysForecast = list.filter(
     (forecast: { dt_txt: string; main: { temp: number } }) => {
       return forecast.dt_txt.startsWith(todayString);
@@ -43,6 +36,12 @@ function DailyForecast() {
   );
 
   const { main: weatherMain } = weather[0];
+
+  if (todaysForecast.length < 1) {
+    return (
+      <Skeleton className="h-[12rem] w-full col-span-full sm-2:col-span-2 md:col-span-2 xl:col-span-2" />
+    );
+  }
 
   const getIcon = () => {
     switch (weatherMain) {
@@ -56,8 +55,6 @@ function DailyForecast() {
         return clearSky;
       case "Clouds":
         return cloudy;
-      case "Thunder":
-        return thunderIcon;
       default:
         return clearSky;
     }
@@ -91,7 +88,7 @@ function DailyForecast() {
                         </p>
                         <p>{getIcon()}</p>
                         <p className="mt-4">
-                          {kelvinToCelsius(forecast.main.temp)}° C
+                          {kelvinToCelsius(forecast.main.temp)}°C
                         </p>
                       </CarouselItem>
                     );

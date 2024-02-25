@@ -5,7 +5,6 @@ import AirPollution from "./Components/AirPollution/AirPollution";
 import DailyForecast from "./Components/DailyForecast/DailyForecast";
 import FeelsLike from "./Components/FeelsLike/FeelsLike";
 import Humidity from "./Components/Humidity/Humidity";
-import Mapbox from "./Components/Mapbox/Mapbox";
 import Navbar from "./Components/Navbar";
 import Population from "./Components/Population/Population";
 import Pressure from "./Components/Pressure/Pressure";
@@ -16,6 +15,7 @@ import Visibility from "./Components/Visibility/Visibility";
 import Wind from "./Components/Wind/Wind";
 import defaultStates from "./utils/defaultStates";
 import FiveDayForecast from "./Components/FiveDayForecast/FiveDayForecast";
+import Mapbox from "./Components/Mapbox/Mapbox";
 
 export default function Home() {
   return (

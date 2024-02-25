@@ -1,7 +1,7 @@
 "use client";
 import { useGlobalContext } from "@/app/context/globalContext";
 import { thermo } from "@/app/utils/Icons";
-import { airQualityIndexText } from "@/app/utils/misc";
+import { airQulaityIndexText } from "@/app/utils/misc";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
@@ -17,13 +17,13 @@ function AirPollution() {
     !airQuality.list[0].main
   ) {
     return (
-      <Skeleton className="h-[12rem] w-full col-span-2" />
+      <Skeleton className="h-[12rem] w-full col-span-2 md:col-span-full" />
     );
   }
 
   const airQualityIndex = airQuality.list[0].main.aqi * 10;
 
-  const filteredIndex = airQualityIndexText.find((item) => {
+  const filteredIndex = airQulaityIndexText.find((item) => {
     return item.rating === airQualityIndex;
   });
 
