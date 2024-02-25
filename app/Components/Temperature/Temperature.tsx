@@ -1,8 +1,9 @@
 "use client";
 
-import { useGlobalContext } from "@/app/context/globalContext";
+import { useGlobalContext } from "@/app/context/globalContext.js";
 import { clearSky, cloudy, drizzleIcon, navigation, rain, snow, thunderIcon } from "@/app/utils/Icons";
 import { kelvinToCelsius } from "@/app/utils/misc";
+import { Skeleton } from "@/components/ui/skeleton";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 
@@ -11,8 +12,8 @@ function Temperature() {
 
   const { main, timezone, name, weather } = forecast;
 
-  if (!forecast || !weather) {
-    return <div>Loading...</div>;
+  if (!forecast || !weather || !main || !timezone) {
+    return <Skeleton className="w-full h-full" />;
   }
 
   const temp = kelvinToCelsius(main?.temp);
@@ -86,12 +87,8 @@ function Temperature() {
           <p className="pt-2 capitalize text-lg font-medium">{description}</p>
         </div>
         <p className="flex items-center gap-2">
-          <span>
-            Low: <strong>{minTemp}°</strong>
-          </span>
-          <span>
-            High: <strong>{maxTemp}°</strong>
-          </span>
+          <span>Low: {minTemp}°</span>
+          <span>High: {maxTemp}°</span>
         </p>
       </div>
     </div>
